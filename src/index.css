@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #00000062 #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #00000052;
+  border-radius: 10px;
+  border: 3px solid #ffffff;
+}
+
+body {
+  background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-Gpa9YigBa4oDxCodcV5ts5PRKyFfNSmlhhfPeT4DSAGGphI6SbqmRKnDS93o01pTLOJmYPFBhhiDsbjMGkuGEVN2cpS-SGsVoW-UA0IjbGAg_yGeg6cGmWJqSpY2QkwrwCM9IRbC0ebzOTZz2xaprucBGKm6CVwD2IApfR2zl1wCQPsrYsrVOTN0TQ/s1920/30042022-v2-MINIMALIST-LANDSCAPE.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#root {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
