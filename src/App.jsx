@@ -96,8 +96,8 @@ const App = () => {
 };
 
 const Wrapper = styled.main`
-  height: 95vh;
-  width: 95%;
+  height: 100vh;
+  width: 100%;
   background-color: #f7f6f4;
   border-radius: 1rem;
   padding: 2rem;

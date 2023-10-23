@@ -11,8 +11,5 @@ const Dashboard = () => {
   );
 };
 
-const Wrapper = styled.section`
-  border-radius: 10px;
-  overflow-y: auto;
-`;
+const Wrapper = styled.section``;
 export default Dashboard;

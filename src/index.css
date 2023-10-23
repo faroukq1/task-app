@@ -13,7 +13,7 @@
 
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-  width: 12px;
+  width: 10px;
 }
 
 *::-webkit-scrollbar-track {
@@ -24,12 +24,6 @@
   background-color: #00000052;
   border-radius: 10px;
   border: 3px solid #ffffff;
-}
-
-body {
-  background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-Gpa9YigBa4oDxCodcV5ts5PRKyFfNSmlhhfPeT4DSAGGphI6SbqmRKnDS93o01pTLOJmYPFBhhiDsbjMGkuGEVN2cpS-SGsVoW-UA0IjbGAg_yGeg6cGmWJqSpY2QkwrwCM9IRbC0ebzOTZz2xaprucBGKm6CVwD2IApfR2zl1wCQPsrYsrVOTN0TQ/s1920/30042022-v2-MINIMALIST-LANDSCAPE.png');
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 #root {
   width: 100%;
