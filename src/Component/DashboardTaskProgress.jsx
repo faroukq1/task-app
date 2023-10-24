@@ -1,18 +1,18 @@
-import styled from "styled-components";
-import { AiOutlineStar } from "react-icons/ai";
-import { BiDotsVerticalRounded } from "react-icons/bi";
-import { useDashboardContext } from "../Context/DashboardContext";
+import styled from 'styled-components';
+import { AiOutlineStar } from 'react-icons/ai';
+import { BiDotsVerticalRounded } from 'react-icons/bi';
+import { useDashboardContext } from '../Context/DashboardContext';
 
 const DashboardTaskProgress = () => {
   const { getCompanyTaskDetails } = useDashboardContext();
   const { companyName, companyTasksNumber, companyTasksDoneNumber } =
-    getCompanyTaskDetails("google");
+    getCompanyTaskDetails('google');
   console.log();
   return (
     <Wrapper>
       <div className="company">
         <div className="info">
-          <img src={"google"} alt="photo" />
+          <img src={'google'} alt="photo" />
           <div>
             <h1>{companyName}</h1>
             <p>{companyName}.inc</p>
@@ -31,8 +31,8 @@ const DashboardTaskProgress = () => {
       <div className="progress">
         <button>
           {companyTasksDoneNumber === companyTasksNumber
-            ? "COMPLETE"
-            : "NOT FINISHED YET"}
+            ? 'COMPLETE'
+            : 'NOT FINISHED YET'}
         </button>
         <button className="priority">MEDUIM PRIORITY</button>
       </div>
@@ -64,7 +64,7 @@ const DashboardTaskProgress = () => {
 };
 
 const Wrapper = styled.div`
-  grid-area: "taskProgress";
+  grid-area: 'taskProgress';
   background-color: white;
   border-radius: 2rem;
   padding: 1rem;
@@ -133,11 +133,12 @@ const Wrapper = styled.div`
       height: 10px;
       margin: 1rem 0;
       border-radius: 2rem;
-      border: 1px solid #ff0095;
+      background-color: #383f4f4c;
       .progression {
         height: 100%;
         background-color: #ff0095;
         transition: 1s all ease;
+        border-radius: 9999px;
       }
     }
   }
