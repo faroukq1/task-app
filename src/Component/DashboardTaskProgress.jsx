@@ -5,14 +5,18 @@ import { useDashboardContext } from '../Context/DashboardContext';
 
 const DashboardTaskProgress = () => {
   const { getCompanyTaskDetails } = useDashboardContext();
-  const { companyName, companyTasksNumber, companyTasksDoneNumber } =
-    getCompanyTaskDetails('google');
+  const {
+    companyName,
+    companyTasksNumber,
+    companyTasksDoneNumber,
+    companyLogo,
+  } = getCompanyTaskDetails('google');
   console.log();
   return (
     <Wrapper>
       <div className="company">
         <div className="info">
-          <img src={'google'} alt="photo" />
+          <img src={companyLogo} alt="photo" />
           <div>
             <h1>{companyName}</h1>
             <p>{companyName}.inc</p>
