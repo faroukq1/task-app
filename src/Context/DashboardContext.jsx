@@ -1,14 +1,24 @@
-import { useState } from 'react';
-import { useContext } from 'react';
-import { createContext } from 'react';
-import { RandomTasks, timerTasks } from '../Data';
-
+import { useState } from "react";
+import { useContext } from "react";
+import { createContext } from "react";
+import { RandomTasks, timerTasks } from "../Data";
 export const DashboardContext = createContext();
 
 export const DashboardProvider = ({ children }) => {
   const [tasks, setTasks] = useState(RandomTasks);
-  const [active, setActive] = useState('DASHBOARD');
+  const [active, setActive] = useState("DASHBOARD");
   const [taskTimerList, setTaskTimerList] = useState(timerTasks);
+  // get company task details
+  console.log(tasks);
+  const getCompanyTaskDetails = (companyName) => {
+    const companyTasks = tasks.filter((item) => item.company === companyName);
+    const companyTasksNumber = companyTasks.length;
+    const companyTaskDone = companyTasks.filter((item) => item.done);
+    const companyTasksDoneNumber = companyTaskDone.length;
+    return { companyName, companyTasksNumber, companyTasksDoneNumber };
+  };
+
+  console.log(getCompanyTaskDetails("google"));
   // make task valid
   const changeTaskState = (id) => {
     const newTaskList = [];
@@ -40,6 +50,7 @@ export const DashboardProvider = ({ children }) => {
         taskTimerList,
         setTaskTimerList,
         playFirstTask,
+        getCompanyTaskDetails,
       }}
     >
       {children}

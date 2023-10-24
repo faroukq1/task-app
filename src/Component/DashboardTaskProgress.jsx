@@ -1,19 +1,21 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { taskProgress } from '../Data';
-import { AiOutlineStar } from 'react-icons/ai';
-import { BiDotsVerticalRounded } from 'react-icons/bi';
+import styled from "styled-components";
+import { AiOutlineStar } from "react-icons/ai";
+import { BiDotsVerticalRounded } from "react-icons/bi";
+import { useDashboardContext } from "../Context/DashboardContext";
+
 const DashboardTaskProgress = () => {
-  const [task, setTask] = useState(taskProgress);
-  const { id, company, name, subName } = task[0];
+  const { getCompanyTaskDetails } = useDashboardContext();
+  const { companyName, companyTasksNumber, companyTasksDoneNumber } =
+    getCompanyTaskDetails("google");
+  console.log();
   return (
     <Wrapper>
       <div className="company">
         <div className="info">
-          <img src={company} alt="photo" />
+          <img src={"google"} alt="photo" />
           <div>
-            <h1>{name}</h1>
-            <p>{subName}</p>
+            <h1>{companyName}</h1>
+            <p>{companyName}.inc</p>
           </div>
         </div>
         <div className="icon-holder">
@@ -27,15 +29,25 @@ const DashboardTaskProgress = () => {
       </div>
 
       <div className="progress">
-        <button>COMPLETED</button>
+        <button>
+          {companyTasksDoneNumber === companyTasksNumber
+            ? "COMPLETE"
+            : "NOT FINISHED YET"}
+        </button>
         <button className="priority">MEDUIM PRIORITY</button>
       </div>
       <div className="task-done">
         <p>
-          Task Done : <span> 30</span>/<span>30</span>
+          Task Done : <span>{companyTasksDoneNumber}</span>/
+          <span>{companyTasksNumber}</span>
         </p>
         <div className="taskbar">
-          <div className="progression"></div>
+          <div
+            className="progression"
+            style={{
+              width: `${(companyTasksDoneNumber * 100) / companyTasksNumber}%`,
+            }}
+          ></div>
         </div>
       </div>
       <div className="phone-system">
@@ -52,7 +64,7 @@ const DashboardTaskProgress = () => {
 };
 
 const Wrapper = styled.div`
-  grid-area: 'taskProgress';
+  grid-area: "taskProgress";
   background-color: white;
   border-radius: 2rem;
   padding: 1rem;
@@ -124,8 +136,8 @@ const Wrapper = styled.div`
       border: 1px solid #ff0095;
       .progression {
         height: 100%;
-        width: 70%;
         background-color: #ff0095;
+        transition: 1s all ease;
       }
     }
   }
