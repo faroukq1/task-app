@@ -7,7 +7,16 @@ const DashboardTaskProgress = () => {
   const { getCompanyTaskDetails } = useDashboardContext();
   const { companyName, companyTasksNumber, companyTasksDoneNumber } =
     getCompanyTaskDetails("google");
-  console.log();
+  if (!(companyTasksDoneNumber || companyTasksNumber)) {
+    return (
+      <Wrapper>
+        <div className="error">
+          <h3>didn't find tasks for {companyName} company</h3>
+        </div>
+      </Wrapper>
+    );
+  }
+
   return (
     <Wrapper>
       <div className="company">
@@ -170,6 +179,15 @@ const Wrapper = styled.div`
     p {
       color: #fd7733;
       font-weight: bold;
+    }
+  }
+  .error {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h3 {
+      color: #383f4f;
     }
   }
 `;

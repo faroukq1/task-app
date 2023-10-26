@@ -1,12 +1,12 @@
-import styled from 'styled-components';
-import { NavBar } from './Component/NavBar';
+import styled from "styled-components";
+import { NavBar } from "./Component/NavBar";
 import {
   createBrowserRouter,
   Route,
   NavLink,
   createRoutesFromElements,
   RouterProvider,
-} from 'react-router-dom';
+} from "react-router-dom";
 import {
   Projects,
   Dashboard,
@@ -15,10 +15,11 @@ import {
   TimeManage,
   Reports,
   Setting,
-} from './Page';
+  ChatBox,
+} from "./Page";
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: (
       <>
         <NavBar />
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: '/projects',
+    path: "/projects",
     element: (
       <>
         <NavBar />
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: '/mytask',
+    path: "/mytask",
     element: (
       <>
         <NavBar />
@@ -48,7 +49,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: '/calendar',
+    path: "/calendar",
     element: (
       <>
         <NavBar />
@@ -58,7 +59,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: '/timemanage',
+    path: "/timemanage",
     element: (
       <>
         <NavBar />
@@ -68,7 +69,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: '/reports',
+    path: "/reports",
     element: (
       <>
         <NavBar />
@@ -78,7 +79,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: '/setting',
+    path: "/setting",
     element: (
       <>
         <NavBar />
@@ -86,11 +87,20 @@ const router = createBrowserRouter([
       </>
     ),
   },
+  {
+    path: "/chatbox",
+    element: (
+      <>
+        <NavBar />
+        <ChatBox />
+      </>
+    ),
+  },
 ]);
 const App = () => {
   return (
     <Wrapper>
-      <RouterProvider router={router} />{' '}
+      <RouterProvider router={router} />{" "}
     </Wrapper>
   );
 };

@@ -1,6 +1,6 @@
-import React from 'react';
-import { AiOutlineSearch, AiOutlineBell } from 'react-icons/ai';
-import styled from 'styled-components';
+import React from "react";
+import { AiOutlineSearch, AiOutlineBell } from "react-icons/ai";
+import styled from "styled-components";
 const DashboardBar = () => {
   return (
     <Wrapper>
@@ -30,13 +30,15 @@ const Wrapper = styled.article`
     display: flex;
     align-items: center;
     position: relative;
+    width: 30%;
     input {
-      padding: 0.5rem;
+      padding: 0.5rem 1rem;
       border-radius: 20px;
       background-color: #f7f6f4;
       color: #8d8e92;
       border-color: transparent;
       outline: none;
+      width: 100%;
     }
     .search-icon {
       position: absolute;

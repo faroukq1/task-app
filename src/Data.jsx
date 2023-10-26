@@ -196,7 +196,6 @@ export const timerTasks = [
       },
     ],
   },
-
   {
     id: nanoid(),
     title: "gym",
@@ -213,26 +212,26 @@ export const profilesData = [
   {
     id: nanoid(),
     avatar: "https://pbs.twimg.com/media/BduTxWnIUAAKT_5.jpg",
-    name: "random name",
-    message: "hello this is test message",
+    name: "john doe",
+    message: "this message is from john",
   },
   {
     id: nanoid(),
     avatar: "https://pbs.twimg.com/media/BduTxWnIUAAKT_5.jpg",
-    name: "random name",
-    message: "hello this is test message",
+    name: "albert doe",
+    message: "hello , i did 5 task this day",
   },
   {
     id: nanoid(),
     avatar: "https://pbs.twimg.com/media/BduTxWnIUAAKT_5.jpg",
-    name: "random name",
-    message: "hello this is test message",
+    name: "nicolas",
+    message: "suck this , i'll take offweek maybe",
   },
   {
     id: nanoid(),
     avatar: "https://pbs.twimg.com/media/BduTxWnIUAAKT_5.jpg",
-    name: "random name",
-    message: "hello this is test message",
+    name: "jonathan",
+    message: "give me fetch url",
   },
 ];
 

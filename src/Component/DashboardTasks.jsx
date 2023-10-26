@@ -1,9 +1,20 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { useDashboardContext } from '../Context/DashboardContext';
-import DashboardTask from './DashboardTask';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { useDashboardContext } from "../Context/DashboardContext";
+import DashboardTask from "./DashboardTask";
 const DashboardTasks = () => {
   const { tasks } = useDashboardContext();
+
+  if (!tasks || tasks?.length === 0) {
+    return (
+      <Wrapper>
+        <div className="error">
+          <p className="error-msg">please add some tasks</p>
+        </div>
+      </Wrapper>
+    );
+  }
+
   return (
     <Wrapper>
       <h3>
@@ -42,6 +53,18 @@ const Wrapper = styled.div`
     color: #e0e0e5;
     font-size: 20px;
     margin-left: 0.5rem;
+  }
+  .error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90%;
+    overflow: hidden;
+    .error-msg {
+      font-weight: bold;
+      color: #383f4f;
+      font-size: 20px;
+    }
   }
 `;
 export default DashboardTasks;
