@@ -7,21 +7,12 @@ const DashboardTaskProgress = () => {
   const { getCompanyTaskDetails } = useDashboardContext();
   const { companyName, companyTasksNumber, companyTasksDoneNumber } =
     getCompanyTaskDetails("google");
-  if (!(companyTasksDoneNumber || companyTasksNumber)) {
-    return (
-      <Wrapper>
-        <div className="error">
-          <h3>didn't find tasks for {companyName} company</h3>
-        </div>
-      </Wrapper>
-    );
-  }
-
+  console.log();
   return (
     <Wrapper>
       <div className="company">
         <div className="info">
-          <img src={"google"} alt="photo" />
+          <img src={companyLogo} alt="photo" />
           <div>
             <h1>{companyName}</h1>
             <p>{companyName}.inc</p>
@@ -142,11 +133,12 @@ const Wrapper = styled.div`
       height: 10px;
       margin: 1rem 0;
       border-radius: 2rem;
-      border: 1px solid #ff0095;
+      background-color: #383f4f4c;
       .progression {
         height: 100%;
         background-color: #ff0095;
         transition: 1s all ease;
+        border-radius: 9999px;
       }
     }
   }

@@ -1,12 +1,19 @@
+<<<<<<< HEAD
 import { useState } from "react";
 import { useContext } from "react";
 import { createContext } from "react";
 import { RandomTasks, timerTasks, profilesData } from "../Data";
+=======
+import { useState } from 'react';
+import { useContext } from 'react';
+import { createContext } from 'react';
+import { RandomTasks, timerTasks } from '../Data';
+>>>>>>> 8279d286e8b8451071b1f06ed3c18b74f284c550
 export const DashboardContext = createContext();
 
 export const DashboardProvider = ({ children }) => {
   const [tasks, setTasks] = useState(RandomTasks);
-  const [active, setActive] = useState("DASHBOARD");
+  const [active, setActive] = useState('DASHBOARD');
   const [taskTimerList, setTaskTimerList] = useState(timerTasks);
   const [profiles, setProfiles] = useState(profilesData);
   // get company task details
@@ -15,8 +22,19 @@ export const DashboardProvider = ({ children }) => {
     const companyTasksNumber = companyTasks.length;
     const companyTaskDone = companyTasks.filter((item) => item.done);
     const companyTasksDoneNumber = companyTaskDone.length;
-    return { companyName, companyTasksNumber, companyTasksDoneNumber };
+    const companyLogo = companyTasks[0].companyPic;
+    return {
+      companyName,
+      companyTasksNumber,
+      companyTasksDoneNumber,
+      companyLogo,
+    };
   };
+<<<<<<< HEAD
+=======
+
+  console.log(getCompanyTaskDetails('google'));
+>>>>>>> 8279d286e8b8451071b1f06ed3c18b74f284c550
   // make task valid
   const changeTaskState = (id) => {
     const newTaskList = [];
