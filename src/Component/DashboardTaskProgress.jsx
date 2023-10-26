@@ -5,9 +5,23 @@ import { useDashboardContext } from "../Context/DashboardContext";
 
 const DashboardTaskProgress = () => {
   const { getCompanyTaskDetails } = useDashboardContext();
-  const { companyName, companyTasksNumber, companyTasksDoneNumber } =
-    getCompanyTaskDetails("google");
-  console.log();
+  const {
+    companyName,
+    companyTasksNumber,
+    companyTasksDoneNumber,
+    companyLogo,
+  } = getCompanyTaskDetails("facebook");
+
+  if (!(companyTasksDoneNumber || companyTasksNumber)) {
+    return (
+      <Wrapper>
+        <div className="error">
+          <h3>didn't find tasks for {companyName}</h3>
+        </div>
+      </Wrapper>
+    );
+  }
+
   return (
     <Wrapper>
       <div className="company">
