@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { useContext } from "react";
-import { createContext } from "react";
-import { RandomTasks, timerTasks, profilesData } from "../Data";
+import { useState } from 'react';
+import { useContext } from 'react';
+import { createContext } from 'react';
+import { RandomTasks, timerTasks, profilesData } from '../Data';
 export const DashboardContext = createContext();
 
 export const DashboardProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
-  const [active, setActive] = useState("DASHBOARD");
+  const [active, setActive] = useState('DASHBOARD');
   const [taskTimerList, setTaskTimerList] = useState([]);
   const [profiles, setProfiles] = useState([]);
   // get company task details
