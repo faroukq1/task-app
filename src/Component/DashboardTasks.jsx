@@ -5,17 +5,19 @@ import DashboardTask from './DashboardTask';
 import { useProjectContext } from '../Context/ProjectContext';
 import { Link } from 'react-router-dom';
 const DashboardTasks = () => {
-  const { tasks } = useDashboardContext();
+  const { tasks, setActive } = useDashboardContext();
   const { setIsAddTaskOpen } = useProjectContext();
+  const addTask = () => {
+    setIsAddTaskOpen(true);
+    setActive('PROJECTS');
+  };
   if (!tasks || tasks?.length === 0) {
     return (
       <Wrapper>
         <div className="error">
           <p className="error-msg">please add some tasks</p>
           <Link to="projects">
-            <button onClick={() => setIsAddTaskOpen(true)}>
-              Add Task here
-            </button>
+            <button onClick={addTask}>Add Task here</button>
           </Link>
         </div>
       </Wrapper>
@@ -77,7 +79,7 @@ const Wrapper = styled.div`
     }
     button {
       background-color: #fd7733;
-      color: #5d5f66;
+      color: #383f4f;
       font-weight: bold;
       border-color: transparent;
       padding: 0.25rem 1.5rem;
