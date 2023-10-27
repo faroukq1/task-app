@@ -10,11 +10,15 @@ const DashboardContent = () => {
   const { getCompanyList } = useDashboardContext();
   return (
     <Wrapper>
-      {getCompanyList()
-        .slice(0, 2)
-        .map((link, index) => (
-          <DashboardTaskProgress key={index} company={link} />
-        ))}
+      {getCompanyList().length ? (
+        getCompanyList()
+          .slice(0, 2)
+          .map((link, index) => (
+            <DashboardTaskProgress key={index} company={link} />
+          ))
+      ) : (
+        <DashboardTaskProgress />
+      )}
       <DashboardCalendar />
       <DashboardTasks />
       <TasksTimer />

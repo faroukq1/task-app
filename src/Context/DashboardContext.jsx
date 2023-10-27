@@ -5,7 +5,7 @@ import { RandomTasks, timerTasks, profilesData } from '../Data';
 export const DashboardContext = createContext();
 
 export const DashboardProvider = ({ children }) => {
-  const [tasks, setTasks] = useState(RandomTasks);
+  const [tasks, setTasks] = useState([]);
   const [active, setActive] = useState('DASHBOARD');
   const [taskTimerList, setTaskTimerList] = useState([]);
   const [profiles, setProfiles] = useState([]);
@@ -25,7 +25,7 @@ export const DashboardProvider = ({ children }) => {
   };
   // get company list
   const getCompanyList = () => {
-    const companyNameList = tasks.map((item) => item.company);
+    const companyNameList = tasks?.map((item) => item.company);
     const set = new Set(companyNameList);
     return Array.from(set);
   };

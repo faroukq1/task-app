@@ -17,7 +17,7 @@ const DashboardTaskProgress = ({ company }) => {
     return (
       <Wrapper>
         <div className="error">
-          <h3>didn't find tasks for {companyName}</h3>
+          <h3>didn't find {companyName !== '' ? companyName : ''} tasks</h3>
         </div>
       </Wrapper>
     );
