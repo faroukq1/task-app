@@ -5,7 +5,7 @@ import { RandomTasks, timerTasks, profilesData } from '../Data';
 export const DashboardContext = createContext();
 
 export const DashboardProvider = ({ children }) => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(RandomTasks);
   const [active, setActive] = useState('DASHBOARD');
   const [taskTimerList, setTaskTimerList] = useState([]);
   const [profiles, setProfiles] = useState([]);
@@ -22,6 +22,12 @@ export const DashboardProvider = ({ children }) => {
       companyTasksDoneNumber,
       companyLogo,
     };
+  };
+  // get company list
+  const getCompanyList = () => {
+    const companyNameList = tasks.map((item) => item.company);
+    const set = new Set(companyNameList);
+    return Array.from(set);
   };
   // make task valid
   const changeTaskState = (id) => {
@@ -57,6 +63,7 @@ export const DashboardProvider = ({ children }) => {
         getCompanyTaskDetails,
         profiles,
         setProfiles,
+        getCompanyList,
       }}
     >
       {children}

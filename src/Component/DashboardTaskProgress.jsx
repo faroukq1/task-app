@@ -1,16 +1,17 @@
-import styled from "styled-components";
-import { AiOutlineStar } from "react-icons/ai";
-import { BiDotsVerticalRounded } from "react-icons/bi";
-import { useDashboardContext } from "../Context/DashboardContext";
+import styled from 'styled-components';
+import { AiOutlineStar } from 'react-icons/ai';
+import { BiDotsVerticalRounded } from 'react-icons/bi';
+import { useDashboardContext } from '../Context/DashboardContext';
 
-const DashboardTaskProgress = () => {
-  const { getCompanyTaskDetails } = useDashboardContext();
+const DashboardTaskProgress = ({ company }) => {
+  const { getCompanyTaskDetails, getCompanyList } = useDashboardContext();
+  console.log(getCompanyList);
   const {
     companyName,
     companyTasksNumber,
     companyTasksDoneNumber,
     companyLogo,
-  } = getCompanyTaskDetails("facebook");
+  } = getCompanyTaskDetails(company);
 
   if (!(companyTasksDoneNumber || companyTasksNumber)) {
     return (
@@ -45,8 +46,8 @@ const DashboardTaskProgress = () => {
       <div className="progress">
         <button>
           {companyTasksDoneNumber === companyTasksNumber
-            ? "COMPLETE"
-            : "NOT FINISHED YET"}
+            ? 'COMPLETE'
+            : 'NOT FINISHED YET'}
         </button>
         <button className="priority">MEDUIM PRIORITY</button>
       </div>
@@ -78,7 +79,7 @@ const DashboardTaskProgress = () => {
 };
 
 const Wrapper = styled.div`
-  grid-area: "taskProgress";
+  grid-area: 'taskProgress';
   background-color: white;
   border-radius: 2rem;
   padding: 1rem;
