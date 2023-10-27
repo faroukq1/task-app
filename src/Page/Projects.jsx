@@ -4,14 +4,17 @@ import DashboardBar from '../Component/DashboardBar';
 import { AiOutlinePlus } from 'react-icons/ai';
 import ProjectsCard from '../Component/ProjectsCard';
 import { useProjectContext } from '../Context/ProjectContext';
+import AddTask from '../Component/AddTask';
 const Projects = () => {
-  const { projectStatus } = useProjectContext();
+  const { projectStatus, isAddTaskOpen, setIsAddTaskOpen } =
+    useProjectContext();
+
   return (
     <Wrapper>
       <DashboardBar />
       <div className="container">
         <div className="add-task">
-          <button>
+          <button onClick={() => setIsAddTaskOpen(!isAddTaskOpen)}>
             <AiOutlinePlus />
           </button>
         </div>
@@ -22,6 +25,7 @@ const Projects = () => {
           })}
         </div>
       </div>
+      {isAddTaskOpen ? <AddTask /> : null}
     </Wrapper>
   );
 };

@@ -1,15 +1,22 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { useDashboardContext } from "../Context/DashboardContext";
-import DashboardTask from "./DashboardTask";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { useDashboardContext } from '../Context/DashboardContext';
+import DashboardTask from './DashboardTask';
+import { useProjectContext } from '../Context/ProjectContext';
+import { Link } from 'react-router-dom';
 const DashboardTasks = () => {
   const { tasks } = useDashboardContext();
-
+  const { setIsAddTaskOpen } = useProjectContext();
   if (!tasks || tasks?.length === 0) {
     return (
       <Wrapper>
         <div className="error">
           <p className="error-msg">please add some tasks</p>
+          <Link to="projects">
+            <button onClick={() => setIsAddTaskOpen(true)}>
+              Add Task here
+            </button>
+          </Link>
         </div>
       </Wrapper>
     );
@@ -60,10 +67,22 @@ const Wrapper = styled.div`
     justify-content: center;
     height: 90%;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     .error-msg {
       font-weight: bold;
       color: #383f4f;
       font-size: 20px;
+    }
+    button {
+      background-color: #fd7733;
+      color: #5d5f66;
+      font-weight: bold;
+      border-color: transparent;
+      padding: 0.25rem 1.5rem;
+      border-radius: 1rem;
+      cursor: pointer;
     }
   }
 `;
