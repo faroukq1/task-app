@@ -5,7 +5,6 @@ import { useDashboardContext } from '../Context/DashboardContext';
 
 const DashboardTaskProgress = ({ company }) => {
   const { getCompanyTaskDetails, getCompanyList } = useDashboardContext();
-  console.log(getCompanyList);
   const {
     companyName,
     companyTasksNumber,

@@ -41,7 +41,8 @@ export const DashboardProvider = ({ children }) => {
   };
   // change page
   const makePageActive = (pageName) => setActive(pageName);
-
+  // get task length
+  const getTaskLength = () => tasks.length;
   // play task
   const playFirstTask = (titleIndex) => {
     const newTimerList = [...taskTimerList];
@@ -64,6 +65,7 @@ export const DashboardProvider = ({ children }) => {
         profiles,
         setProfiles,
         getCompanyList,
+        getTaskLength,
       }}
     >
       {children}
