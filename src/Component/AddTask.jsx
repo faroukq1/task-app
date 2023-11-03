@@ -2,19 +2,26 @@ import { nanoid } from 'nanoid';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useDashboardContext } from '../Context/DashboardContext';
+import { useProjectContext } from '../Context/ProjectContext';
 
 const AddTask = () => {
-  const { getTaskLength } = useDashboardContext();
+  const { getTaskLength, setTasks, tasks } = useDashboardContext();
+  const { setIsAddTaskOpen } = useProjectContext();
   const [taskDetails, setTaskDetail] = useState({
     id: nanoid(),
     number: getTaskLength() + 1,
-    name: 'empty',
+    name: '',
     done: false,
+    text: '',
     companyPic: 'ramdomPic',
-    company: 'empty',
+    company: '',
     subName: 'Inc.',
   });
-  console.log(taskDetails);
+  const setNewTaskList = () => {
+    setTasks([...tasks, taskDetails]);
+    setIsAddTaskOpen(false);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -30,6 +37,10 @@ const AddTask = () => {
             placeholder="please enter task name"
             min={0}
             max={20}
+            value={taskDetails.name}
+            onChange={(e) =>
+              setTaskDetail({ ...taskDetails, name: e.target.value })
+            }
           />
         </div>
         <div className="text">
@@ -38,17 +49,30 @@ const AddTask = () => {
             type="text"
             name="info"
             id="info"
+            value={taskDetails.test}
             placeholder="please enter task info"
+            onChange={(e) =>
+              setTaskDetail({ ...taskDetails, text: e.target.value })
+            }
           />
         </div>
 
         <div className="company">
           <label htmlFor="taskInfo">company</label>
-          <input type="text" name="info" id="info" placeholder="company?" />
+          <input
+            type="text"
+            name="info"
+            id="info"
+            placeholder="company?"
+            value={taskDetails.company}
+            onChange={(e) =>
+              setTaskDetail({ ...taskDetails, company: e.target.value })
+            }
+          />
         </div>
 
         <div className="button">
-          <button>Add Task</button>
+          <button onClick={setNewTaskList}>Add Task</button>
         </div>
       </form>
     </Wrapper>
