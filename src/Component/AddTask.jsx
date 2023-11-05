@@ -1,8 +1,9 @@
-import { nanoid } from 'nanoid';
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { useDashboardContext } from '../Context/DashboardContext';
-import { useProjectContext } from '../Context/ProjectContext';
+import { nanoid } from "nanoid";
+import React, { useState } from "react";
+import styled from "styled-components";
+import { useDashboardContext } from "../Context/DashboardContext";
+import { useProjectContext } from "../Context/ProjectContext";
+import { toast } from "react-toastify";
 
 const AddTask = () => {
   const { getTaskLength, setTasks, tasks } = useDashboardContext();
@@ -10,16 +11,27 @@ const AddTask = () => {
   const [taskDetails, setTaskDetail] = useState({
     id: nanoid(),
     number: getTaskLength() + 1,
-    name: '',
+    name: "",
     done: false,
-    text: '',
-    companyPic: 'ramdomPic',
-    company: '',
-    subName: 'Inc.',
+    text: "",
+    companyPic: "ramdomPic",
+    company: "",
+    subName: "Inc.",
+    taskTimer: {
+      secound: 0,
+      minite: 0,
+      hour: 0,
+      other: false,
+    },
   });
+  console.log(taskDetails.taskTimer.other);
+  const tosty = () => {
+    toast.success("task added successfully");
+  };
   const setNewTaskList = () => {
     setTasks([...tasks, taskDetails]);
     setIsAddTaskOpen(false);
+    tosty();
   };
 
   const handleSubmit = (e) => {
@@ -70,7 +82,99 @@ const AddTask = () => {
             }
           />
         </div>
-
+        <div className="set-timer">
+          {!taskDetails.taskTimer.other && (
+            <>
+              <p>Sellect task time :</p>
+              <select
+                name="timer"
+                id="timer"
+                onChange={(e) => {
+                  if (e.target.value === "other") {
+                    setTaskDetail({
+                      ...taskDetails,
+                      taskTimer: {
+                        ...taskDetails.taskTimer,
+                        other: true,
+                      },
+                    });
+                    return;
+                  }
+                  setTaskDetail({
+                    ...taskDetails,
+                    taskTimer: {
+                      ...taskDetails.taskTimer,
+                      minite: e.target.value,
+                    },
+                  });
+                }}
+              >
+                <option value="15">15min</option>
+                <option value="30">30min</option>
+                <option value="60">1h</option>
+                <option value="other">other?</option>
+              </select>
+            </>
+          )}
+          {taskDetails.taskTimer.other && (
+            <div className="set-custom-timer">
+              <p>set Custom Timer</p>
+              <div>
+                <input
+                  type="number"
+                  name="secound"
+                  id="secound"
+                  value={taskDetails.taskTimer.secound}
+                  onChange={(e) =>
+                    setTaskDetail({
+                      ...taskDetails,
+                      taskTimer: {
+                        ...taskDetails.taskTimer,
+                        secound: e.target.value,
+                      },
+                    })
+                  }
+                  max={59}
+                  min={0}
+                />
+                <input
+                  type="minite"
+                  name="minite"
+                  id="minite"
+                  value={taskDetails.taskTimer.minite}
+                  onChange={(e) =>
+                    setTaskDetail({
+                      ...taskDetails,
+                      taskTimer: {
+                        ...taskDetails.taskTimer,
+                        minite: e.target.value,
+                      },
+                    })
+                  }
+                  max={59}
+                  min={0}
+                />
+                <input
+                  type="hour"
+                  name="hour"
+                  id="hour"
+                  value={taskDetails.taskTimer.hour}
+                  onChange={(e) =>
+                    setTaskDetail({
+                      ...taskDetails,
+                      taskTimer: {
+                        ...taskDetails.taskTimer,
+                        hour: e.target.value,
+                      },
+                    })
+                  }
+                  max={59}
+                  min={0}
+                />
+              </div>
+            </div>
+          )}
+        </div>
         <div className="button">
           <button onClick={setNewTaskList}>Add Task</button>
         </div>
@@ -121,6 +225,34 @@ const Wrapper = styled.div`
       font-weight: normal;
       font-size: 18px;
       cursor: pointer;
+    }
+  }
+  .set-timer {
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    p {
+      font-weight: bold;
+    }
+    option {
+      padding: 1rem;
+    }
+  }
+  .set-custom-timer {
+    p {
+      font-weight: bold;
+      margin: 0.5rem 0;
+    }
+    > div {
+      display: flex;
+      gap: 1rem;
+      input {
+        margin: 0.5rem 0;
+        padding: 0.25rem;
+        width: calc(95% / 3);
+      }
     }
   }
 `;

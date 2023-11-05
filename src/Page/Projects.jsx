@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import DashboardBar from '../Component/DashboardBar';
-import { AiOutlinePlus } from 'react-icons/ai';
-import ProjectsCard from '../Component/ProjectsCard';
-import { useProjectContext } from '../Context/ProjectContext';
-import AddTask from '../Component/AddTask';
+import styled from "styled-components";
+import DashboardBar from "../Component/DashboardBar";
+import { AiOutlinePlus } from "react-icons/ai";
+import ProjectsCard from "../Component/ProjectsCard";
+import { useProjectContext } from "../Context/ProjectContext";
+import AddTask from "../Component/AddTask";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Projects = () => {
   const { projectStatus, isAddTaskOpen, setIsAddTaskOpen } =
     useProjectContext();
@@ -26,6 +27,7 @@ const Projects = () => {
         </div>
       </div>
       {isAddTaskOpen ? <AddTask /> : null}
+      <ToastContainer />
     </Wrapper>
   );
 };
