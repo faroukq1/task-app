@@ -1,14 +1,14 @@
-import React from 'react';
-import { AiOutlinePlayCircle } from 'react-icons/ai';
-import styled from 'styled-components';
-import Timer from './Timer';
-import { useDashboardContext } from '../Context/DashboardContext';
+import React from "react";
+import { AiOutlinePlayCircle } from "react-icons/ai";
+import styled from "styled-components";
+import Timer from "./Timer";
+import { useDashboardContext } from "../Context/DashboardContext";
 const SingleTaskTimer = ({ title, timerList, titleIndex }) => {
   const { playFirstTask } = useDashboardContext();
   return (
     <Wrapper>
       <div className="play-timer">
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
           <h3>{title}</h3>
           <button onClick={() => playFirstTask(titleIndex)}>
             <AiOutlinePlayCircle />

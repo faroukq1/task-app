@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { BsFillPlayFill } from 'react-icons/bs';
-import { BiDotsVerticalRounded } from 'react-icons/bi';
-import { MdOutlineTimer } from 'react-icons/md';
-import { AiOutlinePause } from 'react-icons/ai';
-import styled from 'styled-components';
-import { convertTime } from '../functions';
+import React, { useEffect, useState } from "react";
+import { BsFillPlayFill } from "react-icons/bs";
+import { BiDotsVerticalRounded } from "react-icons/bi";
+import { MdOutlineTimer } from "react-icons/md";
+import { AiOutlinePause } from "react-icons/ai";
+import styled from "styled-components";
+import { convertTime } from "../functions";
+import { useProjectContext } from "../Context/ProjectContext";
 const Timer = ({ title, time, play }) => {
+  const { taskDetails } = useProjectContext();
   const [countDown, setCountDown] = useState({
-    ...convertTime(time),
+    ...time,
     stop: true,
   });
   let timeOut;
@@ -54,7 +56,7 @@ const Timer = ({ title, time, play }) => {
   }, [countDown.sec, countDown.min, countDown.hour, countDown.stop]);
 
   return (
-    <Wrapper className={play ? 'active' : {}}>
+    <Wrapper className={play ? "active" : {}}>
       <MdOutlineTimer className="play" />
       <div className="timer-details">
         <p>{title.length < 20 ? title : `${title.substring(0, 20)}...`}</p>

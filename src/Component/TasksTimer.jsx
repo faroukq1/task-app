@@ -13,10 +13,11 @@ const TasksTimer = () => {
       </Wrapper>
     );
   }
+  console.log(taskTimerList);
   return (
     <Wrapper>
       {taskTimerList.map((task, index) => {
-        return <SingleTaskTimer key={task.id} {...task} titleIndex={index} />;
+        return <SingleTaskTimer key={index} {...task} titleIndex={index} />;
       })}
     </Wrapper>
   );

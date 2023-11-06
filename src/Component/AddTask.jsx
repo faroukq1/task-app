@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useDashboardContext } from "../Context/DashboardContext";
@@ -6,25 +5,8 @@ import { useProjectContext } from "../Context/ProjectContext";
 import { toast } from "react-toastify";
 
 const AddTask = () => {
-  const { getTaskLength, setTasks, tasks } = useDashboardContext();
-  const { setIsAddTaskOpen } = useProjectContext();
-  const [taskDetails, setTaskDetail] = useState({
-    id: nanoid(),
-    number: getTaskLength() + 1,
-    name: "",
-    done: false,
-    text: "",
-    companyPic: "ramdomPic",
-    company: "",
-    subName: "Inc.",
-    taskTimer: {
-      secound: 0,
-      minite: 0,
-      hour: 0,
-      other: false,
-    },
-  });
-  console.log(taskDetails.taskTimer.other);
+  const { setTasks, tasks } = useDashboardContext();
+  const { setIsAddTaskOpen, taskDetails, setTaskDetail } = useProjectContext();
   const tosty = () => {
     toast.success("task added successfully");
   };
@@ -118,13 +100,18 @@ const AddTask = () => {
           )}
           {taskDetails.taskTimer.other && (
             <div className="set-custom-timer">
-              <p>set Custom Timer</p>
+              <p>set Custom Timer :</p>
               <div>
                 <input
                   type="number"
                   name="secound"
                   id="secound"
-                  value={taskDetails.taskTimer.secound}
+                  placeholder="sec"
+                  value={
+                    taskDetails.taskTimer.secound === 0
+                      ? ""
+                      : taskDetails.taskTimer.secound
+                  }
                   onChange={(e) =>
                     setTaskDetail({
                       ...taskDetails,
@@ -138,10 +125,15 @@ const AddTask = () => {
                   min={0}
                 />
                 <input
-                  type="minite"
+                  type="number"
                   name="minite"
                   id="minite"
-                  value={taskDetails.taskTimer.minite}
+                  placeholder="min"
+                  value={
+                    taskDetails.taskTimer.minite === 0
+                      ? ""
+                      : taskDetails.taskTimer.minite
+                  }
                   onChange={(e) =>
                     setTaskDetail({
                       ...taskDetails,
@@ -155,10 +147,15 @@ const AddTask = () => {
                   min={0}
                 />
                 <input
-                  type="hour"
+                  type="number"
                   name="hour"
                   id="hour"
-                  value={taskDetails.taskTimer.hour}
+                  placeholder="hour"
+                  value={
+                    taskDetails.taskTimer.hour === 0
+                      ? ""
+                      : taskDetails.taskTimer.hour
+                  }
                   onChange={(e) =>
                     setTaskDetail({
                       ...taskDetails,
@@ -186,11 +183,11 @@ const AddTask = () => {
 const Wrapper = styled.div`
   position: fixed;
   z-index: 10;
-  top: 22%;
+  top: 20%;
   right: 3.5%;
   background-color: white;
   width: 24%;
-  height: 45%;
+  height: 50%;
   border-radius: 1rem;
   padding: 2rem;
   .task-name,
@@ -251,7 +248,7 @@ const Wrapper = styled.div`
       input {
         margin: 0.5rem 0;
         padding: 0.25rem;
-        width: calc(95% / 3);
+        width: calc(97% / 3);
       }
     }
   }
