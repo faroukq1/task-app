@@ -2,20 +2,48 @@ import { useState } from "react";
 import { useContext } from "react";
 import { createContext } from "react";
 import { RandomTasks, timerTasks, profilesData } from "../Data";
+import { useEffect } from "react";
 export const DashboardContext = createContext();
+
+const exampleTask = [
+  {
+    id: "flsadkflaskdjflksdj",
+    number: 1,
+    name: "random task",
+    done: false,
+    text: "ramdom task",
+    companyPic: "ramdomPic",
+    company: "",
+    subName: "Inc.",
+    taskTimer: {
+      secound: 30,
+      minite: 4,
+      hour: 1,
+      other: false,
+    },
+  },
+];
 
 export const DashboardProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
   const [active, setActive] = useState("DASHBOARD");
   const [profiles, setProfiles] = useState([]);
-
-  //get timer list
+  const [taskTimer, setTaskTimer] = useState([]);
+  // get timer list from task
   const getTimerList = () => {
-    const newList = tasks.map((item) => item.taskTimer);
-    return newList;
+    const newList = tasks.map((item) => {
+      return {
+        name: item.name,
+        time: {
+          ...item.taskTimer,
+        },
+      };
+    });
+    setTaskTimer(newList);
   };
-  const [taskTimerList, setTaskTimerList] = useState([]);
-
+  useEffect(() => {
+    getTimerList();
+  }, [tasks]);
   // get company task details
   const getCompanyTaskDetails = (companyName) => {
     const companyTasks = tasks.filter((item) => item.company === companyName);
@@ -65,14 +93,14 @@ export const DashboardProvider = ({ children }) => {
         active,
         setActive,
         makePageActive,
-        taskTimerList,
-        setTaskTimerList,
         playFirstTask,
         getCompanyTaskDetails,
         profiles,
         setProfiles,
         getCompanyList,
         getTaskLength,
+        taskTimer,
+        setTaskTimer,
       }}
     >
       {children}
