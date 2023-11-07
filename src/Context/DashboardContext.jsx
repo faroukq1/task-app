@@ -1,32 +1,12 @@
-import { useState } from "react";
-import { useContext } from "react";
-import { createContext } from "react";
-import { RandomTasks, timerTasks, profilesData } from "../Data";
-import { useEffect } from "react";
+import { useState } from 'react';
+import { useContext } from 'react';
+import { createContext } from 'react';
+import { RandomTasks, timerTasks, profilesData } from '../Data';
+import { useEffect } from 'react';
 export const DashboardContext = createContext();
-
-const exampleTask = [
-  {
-    id: "flsadkflaskdjflksdj",
-    number: 1,
-    name: "random task",
-    done: false,
-    text: "ramdom task",
-    companyPic: "ramdomPic",
-    company: "",
-    subName: "Inc.",
-    taskTimer: {
-      secound: 30,
-      minite: 4,
-      hour: 1,
-      other: false,
-    },
-  },
-];
-
 export const DashboardProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
-  const [active, setActive] = useState("DASHBOARD");
+  const [active, setActive] = useState('DASHBOARD');
   const [profiles, setProfiles] = useState([]);
   const [taskTimer, setTaskTimer] = useState([]);
   // get timer list from task
