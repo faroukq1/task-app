@@ -1,7 +1,7 @@
-import { useContext, useState } from "react";
-import { createContext } from "react";
-import { projectTaskStatus } from "../Data";
-import { nanoid } from "nanoid";
+import { useContext, useState } from 'react';
+import { createContext } from 'react';
+import { projectTaskStatus } from '../Data';
+import { nanoid } from 'nanoid';
 
 export const ProjectContext = createContext();
 
@@ -11,15 +11,15 @@ export const ProjectProvider = ({ children }) => {
   const [taskDetails, setTaskDetail] = useState({
     id: nanoid(),
     number: 1,
-    name: "",
+    name: '',
     done: false,
-    text: "",
-    companyPic: "ramdomPic",
-    company: "",
-    subName: "Inc.",
+    text: '',
+    companyPic: 'ramdomPic',
+    company: '',
+    subName: 'Inc.',
     taskTimer: {
       secound: 0,
-      minite: 0,
+      minite: 15,
       hour: 0,
       other: false,
     },

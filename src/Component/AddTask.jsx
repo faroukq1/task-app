@@ -1,26 +1,24 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { useDashboardContext } from "../Context/DashboardContext";
-import { useProjectContext } from "../Context/ProjectContext";
-import { toast } from "react-toastify";
-
+import styled from 'styled-components';
+import { useDashboardContext } from '../Context/DashboardContext';
+import { useProjectContext } from '../Context/ProjectContext';
+import { toast } from 'react-toastify';
+import { BiArrowBack } from 'react-icons/bi';
 const AddTask = () => {
   const { setTasks, tasks } = useDashboardContext();
   const { setIsAddTaskOpen, taskDetails, setTaskDetail } = useProjectContext();
-  const tosty = () => {
-    toast.success("task added successfully");
-  };
   const setNewTaskList = () => {
+    if (!taskDetails.name) return toast.error('please provide name');
+    if (!taskDetails.text) return toast.error('please provide a details');
+    if (!taskDetails.company) return toast.error('please provide a company');
     setTasks([...tasks, taskDetails]);
     setIsAddTaskOpen(false);
-    tosty();
+    toast.success('task added successfully');
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
   };
   return (
-    <Wrapper>
+    <Wrapper style={taskDetails.taskTimer.other ? { height: '57%' } : {}}>
       <form onSubmit={handleSubmit}>
         <div className="task-name">
           <label htmlFor="name">task name</label>
@@ -69,10 +67,11 @@ const AddTask = () => {
             <>
               <p>Sellect task time :</p>
               <select
+                className="select-option"
                 name="timer"
                 id="timer"
                 onChange={(e) => {
-                  if (e.target.value === "other") {
+                  if (e.target.value === 'other') {
                     setTaskDetail({
                       ...taskDetails,
                       taskTimer: {
@@ -109,7 +108,7 @@ const AddTask = () => {
                   placeholder="sec"
                   value={
                     taskDetails.taskTimer.secound === 0
-                      ? ""
+                      ? ''
                       : taskDetails.taskTimer.secound
                   }
                   onChange={(e) =>
@@ -131,7 +130,7 @@ const AddTask = () => {
                   placeholder="min"
                   value={
                     taskDetails.taskTimer.minite === 0
-                      ? ""
+                      ? ''
                       : taskDetails.taskTimer.minite
                   }
                   onChange={(e) =>
@@ -153,7 +152,7 @@ const AddTask = () => {
                   placeholder="hour"
                   value={
                     taskDetails.taskTimer.hour === 0
-                      ? ""
+                      ? ''
                       : taskDetails.taskTimer.hour
                   }
                   onChange={(e) =>
@@ -168,6 +167,17 @@ const AddTask = () => {
                   max={59}
                   min={0}
                 />
+                <button
+                  className="back"
+                  onClick={() =>
+                    setTaskDetail({
+                      ...taskDetails,
+                      taskTimer: { ...taskDetails.taskTimer, other: false },
+                    })
+                  }
+                >
+                  <BiArrowBack />
+                </button>
               </div>
             </div>
           )}
@@ -238,6 +248,7 @@ const Wrapper = styled.div`
     }
   }
   .set-custom-timer {
+    width: 100%;
     p {
       font-weight: bold;
       margin: 0.5rem 0;
@@ -251,6 +262,26 @@ const Wrapper = styled.div`
         width: calc(97% / 3);
       }
     }
+  }
+  .back {
+    background-color: #fd7733;
+    border-color: transparent;
+    border-radius: 50%;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0.5rem;
+    cursor: pointer;
+  }
+  .select-option {
+    padding: 0.25rem;
+    border-color: transparent;
+    background-color: #eee;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    outline: none;
   }
 `;
 

@@ -1,8 +1,4 @@
-import { useState } from 'react';
-import { useContext } from 'react';
-import { createContext } from 'react';
-import { RandomTasks, timerTasks, profilesData } from '../Data';
-import { useEffect } from 'react';
+import { useState, useContext, createContext, useEffect } from 'react';
 export const DashboardContext = createContext();
 export const DashboardProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
@@ -14,9 +10,7 @@ export const DashboardProvider = ({ children }) => {
     const newList = tasks.map((item) => {
       return {
         name: item.name,
-        time: {
-          ...item.taskTimer,
-        },
+        time: { ...item.taskTimer },
       };
     });
     setTaskTimer(newList);
