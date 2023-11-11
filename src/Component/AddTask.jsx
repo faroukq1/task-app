@@ -14,7 +14,13 @@ const AddTask = () => {
     setTasks([...tasks, taskDetails]);
     setIsAddTaskOpen(false);
     toast.success('task added successfully');
-    setTaskDetail({ ...taskDetails, name: '', company: '', id: nanoid() });
+    setTaskDetail({
+      ...taskDetails,
+      id: nanoid(),
+      number: tasks.length + 2,
+      name: '',
+      company: '',
+    });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -73,6 +79,7 @@ const AddTask = () => {
                 name="timer"
                 id="timer"
                 onChange={(e) => {
+                  console.log(e.target.value);
                   if (e.target.value === 'other') {
                     setTaskDetail({
                       ...taskDetails,

@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
-const Timer = ({ name, company, time: { hour, secound, minite } }) => {
-  if ((hour && minite && secound) === 0) return;
-  console.log(company);
+const Timer = ({ name, time: { hour, secound, minite } }) => {
+  if (minite === 0 && hour === 0 && secound === 0) return;
   return (
     <Wrapper>
       <h4>name : {name}</h4>
@@ -17,6 +16,7 @@ const Wrapper = styled.div`
   background-color: #eee;
   padding: 0.75rem 1rem;
   border-radius: 1rem;
+  overflow-y: auto;
 `;
 
 export default Timer;

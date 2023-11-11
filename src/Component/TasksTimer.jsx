@@ -9,9 +9,18 @@ const TasksTimer = () => {
   const getComapnies = Array.from(
     new Set([...taskTimer.map((item) => item.company)])
   );
+  if (!taskTimer.length) {
+    return (
+      <Wrapper>
+        <div className="error">
+          <h1>no timer left</h1>
+        </div>
+      </Wrapper>
+    );
+  }
   return (
     <Wrapper>
-      {getComapnies.map((company, index) => {
+      {getComapnies.map((company) => {
         return (
           <div key={nanoid()}>
             <div className="company">
@@ -29,17 +38,25 @@ const TasksTimer = () => {
 };
 
 const Wrapper = styled.div`
-  width: 100%;
-  height: 100%;
   background-color: white;
   border-radius: 2rem;
   padding: 1rem;
+  width: 100%;
+  max-height: 500px;
+  div {
+    margin: 1rem 0;
+  }
+  .error {
+    h1 {
+      color: #474747;
+    }
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    width: 100%;
+    height: 100%;
+  }
 `;
 export default TasksTimer;
-
-/*
-      {taskTimer.map((item) => (
-        <Timer key={nanoid()} {...item} />
-      ))}
-
-*/
