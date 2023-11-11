@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { createContext } from 'react';
 import { projectTaskStatus } from '../Data';
 import { nanoid } from 'nanoid';
-
+import logo from '../assets/randomLogo.jpg';
 export const ProjectContext = createContext();
 
 export const ProjectProvider = ({ children }) => {
@@ -14,12 +14,12 @@ export const ProjectProvider = ({ children }) => {
     name: '',
     done: false,
     text: '',
-    companyPic: 'ramdomPic',
+    companyPic: logo,
     company: '',
     subName: 'Inc.',
     taskTimer: {
       secound: 0,
-      minite: 15,
+      minite: 0,
       hour: 0,
       other: false,
     },

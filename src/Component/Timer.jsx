@@ -1,8 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Timer = ({ name, time: { hour, secound, minite } }) => {
-  console.log(name);
-
+  if ((hour && minite && secound) === 0) return;
   return (
     <Wrapper>
       <h4>name : {name}</h4>

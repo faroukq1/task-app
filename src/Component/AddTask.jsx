@@ -90,6 +90,7 @@ const AddTask = () => {
                   });
                 }}
               >
+                <option value="0">No Time</option>
                 <option value="15">15min</option>
                 <option value="30">30min</option>
                 <option value="60">1h</option>
