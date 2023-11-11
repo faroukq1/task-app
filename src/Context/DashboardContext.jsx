@@ -1,7 +1,43 @@
 import { useState, useContext, createContext, useEffect } from 'react';
 export const DashboardContext = createContext();
+
+const test = [
+  {
+    id: 1212121,
+    number: 1,
+    name: 'just for test',
+    done: false,
+    text: 'just for test',
+    companyPic: 'empty logo',
+    company: 'google',
+    subName: 'Inc.',
+    taskTimer: {
+      secound: 10,
+      minite: 10,
+      hour: 1,
+      other: false,
+    },
+  },
+  {
+    id: 1212121,
+    number: 1,
+    name: 'just for test',
+    done: false,
+    text: 'just for test',
+    companyPic: 'empty logo',
+    company: 'google',
+    subName: 'Inc.',
+    taskTimer: {
+      secound: 22,
+      minite: 19,
+      hour: 2,
+      other: false,
+    },
+  },
+];
+
 export const DashboardProvider = ({ children }) => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(test);
   const [active, setActive] = useState('DASHBOARD');
   const [profiles, setProfiles] = useState([]);
   const [taskTimer, setTaskTimer] = useState([]);
@@ -10,6 +46,7 @@ export const DashboardProvider = ({ children }) => {
     const newList = tasks.map((item) => {
       return {
         name: item.name,
+        company: item.company,
         time: { ...item.taskTimer },
       };
     });
