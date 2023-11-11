@@ -9,7 +9,7 @@ export const ProjectProvider = ({ children }) => {
   const [projectStatus, setProjectStatus] = useState(projectTaskStatus);
   const [isAddTaskOpen, setIsAddTaskOpen] = useState(false);
   const [taskDetails, setTaskDetail] = useState({
-    id: nanoid(),
+    id: '',
     number: 1,
     name: '',
     done: false,

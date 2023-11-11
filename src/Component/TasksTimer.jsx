@@ -9,11 +9,9 @@ const TasksTimer = () => {
   const getComapnies = Array.from(
     new Set([...taskTimer.map((item) => item.company)])
   );
-
-  console.log(getComapnies);
   return (
     <Wrapper>
-      {getComapnies.map((company) => {
+      {getComapnies.map((company, index) => {
         return (
           <div key={nanoid()}>
             <div className="company">
@@ -21,9 +19,7 @@ const TasksTimer = () => {
             </div>
             {taskTimer.map(
               (item) =>
-                item.company === company && (
-                  <p>{`${item.time.hour} ${item.time.minite} ${item.time.hour}`}</p>
-                )
+                item.company === company && <Timer {...item} key={nanoid()} />
             )}
           </div>
         );

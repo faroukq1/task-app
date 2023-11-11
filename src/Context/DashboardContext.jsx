@@ -1,43 +1,8 @@
 import { useState, useContext, createContext, useEffect } from 'react';
 export const DashboardContext = createContext();
 
-const test = [
-  {
-    id: 1212121,
-    number: 1,
-    name: 'just for test',
-    done: false,
-    text: 'just for test',
-    companyPic: 'empty logo',
-    company: 'google',
-    subName: 'Inc.',
-    taskTimer: {
-      secound: 10,
-      minite: 10,
-      hour: 1,
-      other: false,
-    },
-  },
-  {
-    id: 1212121,
-    number: 1,
-    name: 'just for test',
-    done: false,
-    text: 'just for test',
-    companyPic: 'empty logo',
-    company: 'google',
-    subName: 'Inc.',
-    taskTimer: {
-      secound: 22,
-      minite: 19,
-      hour: 2,
-      other: false,
-    },
-  },
-];
-
 export const DashboardProvider = ({ children }) => {
-  const [tasks, setTasks] = useState(test);
+  const [tasks, setTasks] = useState([]);
   const [active, setActive] = useState('DASHBOARD');
   const [profiles, setProfiles] = useState([]);
   const [taskTimer, setTaskTimer] = useState([]);
@@ -89,12 +54,7 @@ export const DashboardProvider = ({ children }) => {
   const makePageActive = (pageName) => setActive(pageName);
   // get task length
   const getTaskLength = () => tasks.length;
-  // play task
-  const playFirstTask = (titleIndex) => {
-    const newTimerList = [...taskTimerList];
-    newTimerList[titleIndex].timerList[0].play = true;
-    setTaskTimerList(newTimerList);
-  };
+
   return (
     <DashboardContext.Provider
       value={{
@@ -104,7 +64,6 @@ export const DashboardProvider = ({ children }) => {
         active,
         setActive,
         makePageActive,
-        playFirstTask,
         getCompanyTaskDetails,
         profiles,
         setProfiles,

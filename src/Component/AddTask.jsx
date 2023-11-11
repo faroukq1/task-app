@@ -3,16 +3,18 @@ import { useDashboardContext } from '../Context/DashboardContext';
 import { useProjectContext } from '../Context/ProjectContext';
 import { toast } from 'react-toastify';
 import { BiArrowBack } from 'react-icons/bi';
+import { nanoid } from 'nanoid';
 const AddTask = () => {
   const { setTasks, tasks } = useDashboardContext();
   const { setIsAddTaskOpen, taskDetails, setTaskDetail } = useProjectContext();
-  const setNewTaskList = () => {
+  const addNewTask = () => {
     if (!taskDetails.name) return toast.error('please provide name');
     if (!taskDetails.text) return toast.error('please provide a details');
     if (!taskDetails.company) return toast.error('please provide a company');
     setTasks([...tasks, taskDetails]);
     setIsAddTaskOpen(false);
     toast.success('task added successfully');
+    setTaskDetail({ ...taskDetails, name: '', company: '', id: nanoid() });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,7 +23,7 @@ const AddTask = () => {
     <Wrapper style={taskDetails.taskTimer.other ? { height: '57%' } : {}}>
       <form onSubmit={handleSubmit}>
         <div className="task-name">
-          <label htmlFor="name">task name</label>
+          <label>task name</label>
           <input
             type="text"
             name="name"
@@ -36,7 +38,7 @@ const AddTask = () => {
           />
         </div>
         <div className="text">
-          <label htmlFor="taskInfo">task info</label>
+          <label>task info</label>
           <input
             type="text"
             name="info"
@@ -50,7 +52,7 @@ const AddTask = () => {
         </div>
 
         <div className="company">
-          <label htmlFor="taskInfo">company</label>
+          <label>company</label>
           <input
             type="text"
             name="info"
@@ -184,7 +186,7 @@ const AddTask = () => {
           )}
         </div>
         <div className="button">
-          <button onClick={setNewTaskList}>Add Task</button>
+          <button onClick={addNewTask}>Add Task</button>
         </div>
       </form>
     </Wrapper>
