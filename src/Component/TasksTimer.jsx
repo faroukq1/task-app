@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useDashboardContext } from '../Context/DashboardContext';
 import { nanoid } from 'nanoid';
 import Timer from './Timer';
+import { FaPlay } from 'react-icons/fa';
 
 const TasksTimer = () => {
   const { taskTimer } = useDashboardContext();
@@ -25,6 +26,7 @@ const TasksTimer = () => {
           <div key={nanoid()}>
             <div className="company">
               <h1>{company}</h1>
+              <FaPlay />
             </div>
             {taskTimer.map(
               (item) =>
@@ -42,7 +44,8 @@ const Wrapper = styled.div`
   border-radius: 2rem;
   padding: 1rem;
   width: 100%;
-  max-height: 500px;
+  max-height: 370px;
+  overflow-y: auto;
   div {
     margin: 1rem 0;
   }
@@ -57,6 +60,20 @@ const Wrapper = styled.div`
     border-radius: 2rem;
     width: 100%;
     height: 100%;
+  }
+  .company {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0.5rem;
+    h1 {
+      color: #262c3f;
+    }
+    svg {
+      cursor: pointer;
+      font-size: 17px;
+      color: #767b8e;
+    }
   }
 `;
 export default TasksTimer;
