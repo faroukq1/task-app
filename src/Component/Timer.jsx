@@ -39,15 +39,18 @@ const Timer = ({ name, time: { hour, secound, minite } }) => {
     }, 10);
   };
   const stopTimer = () => {
-    return clearTimeout(timeOut);
+    clearTimeout(timeOut);
   };
   useEffect(() => {
-    if (!timer.isPaused || !timer.isFinished) {
+    if (!timer.isPaused && !timer.isFinished) {
       playTimer();
-      return;
+    } else {
+      stopTimer();
     }
-    return stopTimer();
-  }, [timer.isPaused, timer.isFinished]);
+    return () => {
+      clearInterval(timeOut);
+    };
+  }, [timer.isPaused, timer.isFinished, timer]);
   if (minite === 0 && hour === 0 && secound === 0) return;
   return (
     <Wrapper>
