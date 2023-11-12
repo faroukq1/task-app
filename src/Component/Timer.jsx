@@ -6,9 +6,9 @@ import { AiOutlinePause } from 'react-icons/ai';
 import { useEffect, useState } from 'react';
 const Timer = ({ name, time: { hour, secound, minite } }) => {
   const [timer, setTimer] = useState({
-    hour: hour,
-    minite: minite,
-    secound: secound,
+    hour,
+    minite,
+    secound,
     isFinished: false,
     isPaused: true,
   });
@@ -17,19 +17,15 @@ const Timer = ({ name, time: { hour, secound, minite } }) => {
     const { hour, minite, secound } = timer;
     timeOut = setInterval(() => {
       if (minite === 0 && hour === 0 && secound === 0) {
-        setTimer({ ...timer, isPaused: true, isFinished: true });
+        setTimer({ ...timer, isFinished: true, isPaused: true });
         return clearInterval(timeOut);
       }
-
       if (secound <= 0 && minite <= 0 && hour > 0) {
-        setTimer({ ...timer, isPaused: false });
-        const newHour = hour - 1;
-        setTimer({ ...timer, hour: newHour, minite: 60 });
+        const newhour = hour - 1;
+        setTimer({ ...timer, hour: newhour, minite: 60 });
         return clearInterval(timeOut);
       }
       if (secound <= 0 && minite > 0) {
-        setTimer({ ...timer, isPaused: false });
-
         const newMinite = minite - 1;
         setTimer({ ...timer, minite: newMinite, secound: 60 });
         return clearInterval(timeOut);
@@ -40,25 +36,18 @@ const Timer = ({ name, time: { hour, secound, minite } }) => {
         return clearInterval(timeOut);
       }
       return clearInterval(timeOut);
-    }, 90);
+    }, 10);
   };
   const stopTimer = () => {
-    setTimer({ ...timer, isPaused: true });
     return clearTimeout(timeOut);
   };
   useEffect(() => {
-    if (!timer.isPaused || timer.isFinished) {
+    if (!timer.isPaused || !timer.isFinished) {
       playTimer();
       return;
     }
-    stopTimer();
-  }, [
-    timer.minite,
-    timer.secound,
-    timer.hour,
-    timer.isFinished,
-    timer.isPaused,
-  ]);
+    return stopTimer();
+  }, [timer.isPaused, timer.isFinished]);
   if (minite === 0 && hour === 0 && secound === 0) return;
   return (
     <Wrapper>
@@ -70,7 +59,8 @@ const Timer = ({ name, time: { hour, secound, minite } }) => {
         <span>{`${timer.hour}hr ${timer.minite}min ${timer.secound}sec`}</span>
         <button
           onClick={() => {
-            setTimer({ ...timer, isPaused: true });
+            const newIsPausedValue = !timer.isPaused;
+            setTimer({ ...timer, isPaused: newIsPausedValue });
           }}
         >
           {timer.isPaused ? <FaPlay /> : <AiOutlinePause />}
