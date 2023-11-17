@@ -1,11 +1,10 @@
-import styled from 'styled-components';
 import { RiTimerFill } from 'react-icons/ri';
 import { FaPlay } from 'react-icons/fa';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import { AiOutlinePause } from 'react-icons/ai';
 import { useEffect, useState } from 'react';
 import { useDashboardContext } from '../Context/DashboardContext';
-
+import Wrapper from '../style/SingleTaskTimerStyle';
 const SECOND_IN_MILISECOND = 1000;
 const MINUTE_IN_HOUR = 60;
 const SECOND_IN_MINUTE = 60;
@@ -84,39 +83,5 @@ const Timer = ({ id, name, time: { hour, secound, minite } }) => {
     </Wrapper>
   );
 };
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  background-color: #eee;
-  padding: 0 1rem;
-  border-radius: 0.5rem;
-  overflow-y: auto;
-  button {
-    background-color: transparent;
-    border-color: transparent;
-  }
-  svg {
-    font-size: 20px;
-    color: #767b8e;
-    cursor: pointer;
-  }
-  .task-info {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    span {
-      font-weight: 500;
-    }
-  }
-  .timer {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    svg {
-      font-size: 15px;
-    }
-  }
-`;
 
 export default Timer;

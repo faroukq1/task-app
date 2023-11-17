@@ -1,7 +1,7 @@
-import styled from 'styled-components';
 import logo from '../assets/logo.png';
 import { pages } from '../Data';
 import Pages from './Pages';
+import Wrapper from '../style/NavbarStyle';
 export const NavBar = () => {
   return (
     <Wrapper>
@@ -12,19 +12,3 @@ export const NavBar = () => {
     </Wrapper>
   );
 };
-
-const Wrapper = styled.nav`
-  position: relative;
-  background-color: white;
-  border-radius: 1rem;
-  display: grid;
-  grid-auto-rows: auto 1fr;
-  transition: 1s all ease;
-  .logo-container {
-    display: flex;
-    justify-content: center;
-    img {
-      width: 90px;
-    }
-  }
-`;
