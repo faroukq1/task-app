@@ -10,6 +10,7 @@ export const DashboardProvider = ({ children }) => {
   const getTimerList = () => {
     const newList = tasks.map((item) => {
       return {
+        id: item.id,
         name: item.name,
         company: item.company,
         time: { ...item.taskTimer },
@@ -43,11 +44,21 @@ export const DashboardProvider = ({ children }) => {
   // make task valid
   const changeTaskState = (id) => {
     const newTaskList = [];
-    tasks.map((task) =>
+    tasks.map((task) => {
       task.id === id
         ? ((task.done = !task.done), newTaskList.push(task))
-        : newTaskList.push(task)
-    );
+        : newTaskList.push(task);
+    });
+    setTasks(newTaskList);
+  };
+  // make task cheked only
+  const makeTaskChecked = (id) => {
+    const newTaskList = [];
+    tasks.map((task) => {
+      task.id === id
+        ? ((task.done = true), newTaskList.push(task))
+        : newTaskList.push(task);
+    });
     setTasks(newTaskList);
   };
   // change page
@@ -61,6 +72,7 @@ export const DashboardProvider = ({ children }) => {
         tasks,
         setTasks,
         changeTaskState,
+        makeTaskChecked,
         active,
         setActive,
         makePageActive,

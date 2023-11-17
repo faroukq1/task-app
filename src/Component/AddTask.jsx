@@ -79,7 +79,6 @@ const AddTask = () => {
                 name="timer"
                 id="timer"
                 onChange={(e) => {
-                  console.log(e.target.value);
                   if (e.target.value === 'other') {
                     setTaskDetail({
                       ...taskDetails,
